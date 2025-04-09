@@ -1,0 +1,119 @@
+## Correlations for Forced Convection
+
+Forced convection heat transfer correlations are empirical relationships based on experimental data that allow us to predict the Nusselt number (Nu) and subsequently the convective heat transfer coefficient ($h$). These correlations are typically expressed in terms of dimensionless numbers like the Reynolds number (Re) and the Prandtl number (Pr), and they depend on the specific geometry and flow conditions.
+
+Here are some common correlations for different forced convection scenarios:
+
+**1. Flow over a Flat Plate:**
+
+* **Laminar Flow ($Re_L < 5 \times 10^5$):**
+    * Local Nusselt number:
+        $\qquad Nu_x = 0.332 Re_x^{0.5} Pr^{1/3} \quad (Pr \ge 0.6)$
+    * Average Nusselt number over a length $L$:
+        $\qquad Nu_L = 0.664 Re_L^{0.5} Pr^{1/3} \quad (Pr \ge 0.6)$
+* **Turbulent Flow ($Re_L > 5 \times 10^5$):**
+    * Local Nusselt number:
+        $\qquad Nu_x = 0.0296 Re_x^{0.8} Pr^{1/3} \quad (0.6 \le Pr \le 60)$
+    * Average Nusselt number over a length $L$:
+        $\qquad Nu_L = 0.037 Re_L^{0.8} Pr^{1/3} \quad (0.6 \le Pr \le 60)$
+* **Mixed Laminar and Turbulent Flow ($Re_{crit} = 5 \times 10^5$):**
+    $\qquad Nu_L = (0.037 Re_L^{0.8} - 871) Pr^{1/3} \quad (0.6 \le Pr \le 60)$
+
+**2. Flow across a Cylinder:**
+
+* A widely used correlation by Churchill and Bernstein (for a wide range of Re and Pr):
+    $\qquad Nu_D = 0.3 + \frac{0.62 Re_D^{0.5} Pr^{1/3}}{[1 + (0.4/Pr)^{2/3}]^{1/4}} [1 + (\frac{Re_D}{282000})^{5/8}]^{4/5} \quad (Re_D Pr > 0.2)$
+* Simpler correlations for specific ranges of $Re_D Pr$ also exist.
+
+**3. Flow across a Sphere:**
+
+* Whitaker correlation (for $3.5 \le Re_D \le 80000$ and $0.7 \le Pr \le 380$):
+    $\qquad Nu_D = 2 + (0.4 Re_D^{0.5} + 0.06 Re_D^{2/3}) Pr^{0.4} (\frac{\mu_\infty}{\mu_s})^{1/4}$
+    where $\mu_\infty$ is the viscosity at the free stream temperature and $\mu_s$ is the viscosity at the surface temperature.
+
+**4. Internal Flow in a Circular Tube:**
+
+* **Laminar Flow ($Re_D < 2300$):**
+    * Fully developed, constant surface temperature: $Nu_D = 3.66$
+    * Fully developed, constant heat flux: $Nu_D = 4.36$
+    * For developing flow, more complex correlations involving the Graetz number ($Gz = Re_D Pr D/L$) are used.
+* **Turbulent Flow ($Re_D \ge 10000$):**
+    * Dittus-Boelter equation ($0.7 \le Pr \le 160$, $L/D \ge 10$):
+        $\qquad Nu_D = 0.023 Re_D^{0.8} Pr^n$
+        where $n = 0.4$ for heating ($T_s > T_m$) and $n = 0.3$ for cooling ($T_s < T_m$). Properties are evaluated at the bulk mean temperature $T_m$.
+    * Sieder-Tate correlation (for larger temperature differences):
+        $\qquad Nu_D = 0.027 Re_D^{0.8} Pr^{1/3} (\frac{\mu_b}{\mu_w})^{0.14}$
+        where $\mu_b$ is the viscosity at the bulk mean temperature and $\mu_w$ is the viscosity at the wall temperature.
+
+**5. Flow in Non-Circular Ducts:**
+
+* For laminar flow, Nusselt numbers can sometimes be analytically determined or found in tables for specific geometries using the hydraulic diameter ($D_h = 4A_c/P$, where $A_c$ is the cross-sectional area and $P$ is the wetted perimeter).
+* For turbulent flow, correlations for circular tubes can often be used with the Reynolds number based on the hydraulic diameter, and with appropriate adjustments.
+
+**Important Notes for Forced Convection Correlations:**
+
+* Fluid properties in the correlations (like $k, \mu, \rho, c_p, Pr$) should be evaluated at the **film temperature** ($T_f = (T_s + T_\infty)/2$) for external flows, unless specified otherwise.
+* For internal flows, properties are usually evaluated at the **bulk mean temperature** ($T_m$), unless specified otherwise.
+* The range of validity (in terms of Re and Pr) should always be checked before using a correlation.
+* These correlations provide an average or local Nusselt number, from which the heat transfer coefficient $h$ can be calculated ($h = Nu \cdot k_f / L_c$ or $h = Nu \cdot k_f / D$).
+* The accuracy of these empirical correlations is typically within $\pm 10-25\%$.
+
+## Correlations for Free Convection
+
+Free convection heat transfer correlations also relate the Nusselt number (Nu) to relevant dimensionless numbers, primarily the Rayleigh number (Ra) and the Prandtl number (Pr). The Rayleigh number incorporates the effects of buoyancy forces. The general form of these correlations is $Nu = C Ra^n Pr^m$ or $Nu = C Ra^n$, where $C$, $n$, and $m$ are constants that depend on the geometry and the flow regime (laminar or turbulent). Often, $Ra = Gr \cdot Pr$ is used, where $Gr$ is the Grashof number.
+
+Here are some common correlations for different free convection scenarios:
+
+**1. Vertical Plates:**
+
+* Churchill and Chu correlation (valid for all Ra):
+    $\qquad Nu_L = \{0.825 + \frac{0.387 Ra_L^{1/6}}{[1 + (0.492/Pr)^{9/16}]^{8/27}}\}^2$
+* Simplified correlations for specific Ra ranges:
+    * Laminar flow ($10^4 \le Ra_L \le 10^9$): $Nu_L = 0.59 Ra_L^{1/4}$
+    * Turbulent flow ($10^9 \le Ra_L \le 10^{12}$): $Nu_L = 0.10 Ra_L^{1/3}$
+
+**2. Horizontal Plates:**
+
+* **Upper surface heated or lower surface cooled:**
+    * Laminar flow ($Ra_L \le 10^7$): $Nu_L = 0.54 Ra_L^{1/4}$
+    * Turbulent flow ($10^7 \le Ra_L \le 10^{11}$): $Nu_L = 0.15 Ra_L^{1/3}$
+* **Lower surface heated or upper surface cooled:**
+    * Laminar flow ($Ra_L \le 10^5$): $Nu_L = 0.27 Ra_L^{1/4}$
+
+**3. Horizontal Cylinders:**
+
+* Churchill and Chu correlation (valid for a wide range of Ra and Pr):
+    $\qquad Nu_D = \{0.6 + \frac{0.387 Ra_D^{1/6}}{[1 + (0.559/Pr)^{9/16}]^{8/27}}\}^2$
+* Simplified correlations for specific Ra ranges also exist.
+
+**4. Spheres:**
+
+* Churchill correlation (valid for a wide range of Ra and Pr):
+    $\qquad Nu_D = 2 + \frac{0.589 Ra_D^{1/4}}{[1 + (0.469/Pr)^{9/16}]^{4/9}}$
+
+**5. Vertical Cylinders:**
+
+* If the boundary layer thickness is much smaller than the cylinder diameter (thin cylinder), correlations for vertical plates can be used with the height $L$ as the characteristic length.
+
+**6. Inclined Plates:**
+
+* Correlations for vertical and horizontal plates can be modified by using $g \cos \theta$ instead of $g$ in the Grashof and Rayleigh numbers, where $\theta$ is the angle of inclination from the vertical. The applicability of these modifications depends on the angle and whether the heated surface is facing upwards or downwards.
+
+**Important Notes for Free Convection Correlations:**
+
+* Fluid properties in the correlations (like $k, \beta, \nu, \alpha, Pr$) should be evaluated at the **film temperature** ($T_f = (T_s + T_\infty)/2$).
+* The characteristic length ($L_c$) varies depending on the geometry (e.g., length for a vertical plate, diameter for a cylinder or sphere).
+* The Rayleigh number ($Ra = Gr \cdot Pr$) determines the flow regime. The critical Rayleigh number for transition to turbulence depends on the geometry and orientation (typically around $10^9$ for vertical plates).
+* These correlations provide an average Nusselt number, from which the average heat transfer coefficient $h$ can be calculated ($h = Nu \cdot k_f / L_c$).
+* The accuracy of these empirical correlations is also typically within $\pm 10-25\%$.
+
+When applying these correlations, it is crucial to:
+
+* Identify the geometry of the heat transfer surface.
+* Determine the appropriate characteristic length.
+* Evaluate the fluid properties at the correct temperature.
+* Calculate the relevant dimensionless numbers (Re, Pr for forced; Gr, Pr, Ra for free).
+* Select the correlation that is valid for the calculated range of dimensionless numbers and the specific geometry.
+* Solve for the Nusselt number and then the convective heat transfer coefficient.
+
+These correlations are essential tools for engineers to estimate heat transfer rates in various practical applications involving forced and free convection.
